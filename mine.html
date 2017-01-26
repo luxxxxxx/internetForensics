@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>取证</title>
+	<link rel="stylesheet" type="text/css" href="./css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="./css/common.css" />
+	<link rel="stylesheet" type="text/css" href="./css/mine.css">
+</head>
+<body class="">  <!-- delete : 确认删除 move : 确认移动-->
+	<div id="alert" class="alert">
+		<div class="close"></div>
+		<p class="hint">确定删除选中文件吗？</p>
+		<div class="selectCon clearfix">
+			<div class="confirm">确认</div>
+			<div class="cancle">取消</div>
+		</div>
+	</div>
+
+	<div id="alert2" class="alert">
+		<div class="close"></div>
+		<p class="hint">确定移动文件吗?</p>
+		<div class="selectCon clearfix">
+			<div class="confirm">确认</div>
+			<div class="cancle">取消</div>
+		</div>
+	</div>
+
+	<div id="header-wrp">
+		<div id="header">
+			<ul class="l clearfix">
+				<li class="navList"><a href="./main.html">首页</a></li>
+				<li class="navList select"><a href="./mine.html">我的</a></li>
+				<li class="bar"></li>
+			</ul>
+			<div class="r clearfix">
+				<div class="loginCon">  <!-- login: 登录状态 -->
+					<span>注销</span>
+					<span class="n-margin-r">操作历史</span>
+				</div>
+				<div class="photo">
+					<img src="./img/photo1.png" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="inputCon">
+		<input type="text" name="" placeholder="搜索你的文件">
+		<i class="icon"></i>
+	</div>
+	<div id="main" class="clearfix">
+		<div class="header-wrp clearfix">
+			<div class="photo"><img src="./img/photo.png"></div>
+			<div class="info ">
+				<p class="userName">李熊安</p>
+				<p class="address">重庆市南岸区公安局</p>
+				<span class="edit"><i class="icon"></i>编辑</span>
+				<div class="editsCon">
+					<span class="newFile"><i class="icon new"></i>新建文件</span>
+					<span class="rn">重命名</span>
+					<span class="move">移动</span>
+					<span class="del"><i class="icon delete"></i>删除</span>
+					<span class="dl"><i class="icon down"></i>下载</span>
+					<span class="cancel">取消编辑</span>
+				</div>
+			</div>
+		</div>
+		
+		<div id="x">
+			<div class="fileCon">
+				<div class="pageCon">
+					<div class="page clearfix">
+						<div class="doc file">  <!-- file ： 文件 select:选择模式  true： 选中 -->
+							<div class="file"></div>
+							<div class="v"></div>
+							<p class="t">数据取证报包</p>
+						</div>
+						<!-- <div class="doc file ">
+							<div class="v"></div>
+							<div class="file"></div>
+							<p class="t">数据取证报包</p>
+
+						</div>
+						<div class="doc file ">
+							<div class="v"></div>
+							<div class="file"></div>
+							<p class="t">数据取证报包</p>
+
+						</div>
+						<div class="doc ">
+							<div class="v"></div>
+							<div class="file"><img src=""></div>
+							<p class="t">asas</p>
+						</div>
+						<div class="doc ">
+							<div class="v"></div>
+							<div class="file"><img src=""></div>
+							<p class="t">asas</p>
+						</div>
+						<div class="doc ">
+							<div class="v"></div>
+							<div class="file"><img src=""></div>
+							<p class="t">asas</p>
+						</div>
+						<div class="doc ">
+							<div class="v"></div>
+							<div class="file"><img src=""></div>
+							<p class="t">asas</p>
+						</div>
+						<div class="doc ">
+							<div class="v"></div>
+							<div class="file"><img src=""></div>
+							<p class="t">asas</p>
+
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<div class="pnCon clearfix">
+				<span>上一页</span>
+				<ul id="pgList" class='clearfix'>
+					<li class="select">1</li>
+				</ul>
+				<span>下一页</span>
+			</div>
+		</div>
+	</div>
+	<div id="footer"><p>版本: v1.0.0.0v CopyRight(C) 版权所有 重庆邮电大学</p></div>
+</body>
+</html>
+<script type="text/javascript" src='./js/pack-0.5.js'></script>
+<script type="text/javascript">
+	(function header () {
+		var bar = $$('.bar'),
+			navCon = $$('#header ul.l'),
+			currentNav = $$('#header ul.l .select'),
+			editBtn = $$('#main > .header-wrp > .info > .edit'),
+			editsCon = $$('.editsCon'), 
+			cancleEditBtn = $$('.editsCon .cancel'),  //取消编辑
+			newFileBtn = $$('.editsCon .newFile'),  //新建文件按钮
+			reNameBtn = $$('.editsCon span.rn'),  //重命名按钮
+			deleteBtn = $$('.editsCon span.del'),  //删除
+			moveBth = $$('.editsCon span.move'),  //移动按钮
+			fileCon = $$('.fileCon'),  //fileCon
+			docs = $$('.fileCon .doc'),
+			pagesCon = $$('.fileCon .pageCon'),
+			body = $$('body'),
+
+			//搜索
+			inputCon = $$('#inputCon > input[type="text"]'),  //搜索输入框
+			searchBtn = $$('#inputCon > i'),  //搜索按钮
+			xPage = $$('#x'),  //下面文件编辑页面
+
+			//确认删除弹框  
+			confirmDel = $$('#alert .confirm'),
+			cancelDel = $$('#alert .cancle'),
+			closeDel = $$('#alert .close'),
+
+			//确认移动弹框
+			confirmMove = $$('#alert2 .confirm'),  
+			cancelMove = $$('#alert2 .cancle'),
+			closeMove = $$('#alert2 .close'),
+			moveHint = $$('#alert2 .hint'),  //移动提示
+			cacheMoveFile = [],  //用来存放移动的文件
+			moveTarget,  //移动至 (目标文件)
+			isMove = false,  //是否激活移动按钮
+
+			pgUl = $$('#pgList'),  //页数存放ul
+			trunPageBtns = $$('.pnCon span'),
+
+			currentFix,  //当前聚焦的 input
+			files = $$('.fileCon .doc.file'),  //所有文件
+		    navs = $$('#header ul.l li.navList');  //导航所有
+
+		    pgUl.index = 0;
+		bar.style.left = currentNav.offsetLeft + 'px';
+		on(navs,'mouseover',function(){
+			removeSiblingsClass(this,'select');
+			addClass(this,'select');
+			bar.style.left = this.offsetLeft + 'px';
+		})
+
+		on(navCon,'mouseleave',function () {
+			removeSiblingsClass(currentNav,'select');
+			addClass(currentNav,'select');
+			var l = currentNav.offsetLeft;
+			bar.style.left = l + 'px';
+		})
+
+		on(editBtn,'click',function () {
+			addClass(this.parentNode,'editMode');
+			var files = fileCon.querySelectorAll('.doc');
+			addClass(files,'select')
+		})
+
+		on(newFileBtn,'click',function () {  //新建文件按键dianji
+			var lastPage = $$('.pageCon .page:last-child'),
+				pageL = pagesCon.querySelectorAll('.page').length,
+				lastPageL = lastPage.querySelectorAll('.doc').length,
+				oFile = document.createElement('div'),
+				oDiv = document.createElement('div'),
+				oV = document.createElement('div'),
+				oPage = document.createElement('div'),
+				op = document.createElement('p');
+				op.className = 't';
+				op.innerHTML = '新建文档';
+				oPage.className = 'page clearfix';
+				oFile.className = 'doc file select';
+				oDiv.className = 'file';
+				oV.className = 'v';
+				oFile.appendChild(oV);
+				oFile.appendChild(oDiv);
+				oFile.appendChild(op);
+				oFile.onclick = function () {
+					if (hasClass(this,'select')) {
+						if (hasClass(this,'true')) {
+							removeClass(this,'true');
+						} else {
+							addClass(this,'true');
+						}
+					}
+				}
+				var page = document.createElement('div');
+					page.className = 'page clearfix';
+				if (lastPageL == 8) {
+					pageL ++;
+					pagesCon.style.width = pageL*1000 + 'px';
+					oPage.appendChild(oFile);
+					pagesCon.appendChild(oPage);
+					pgUl.innerHTML = '';
+					for (var i = 0; i < pageL ; i++) {
+						var oLi = document.createElement('li');
+						oLi.innerHTML = i + 1;
+						oLi.index = i;
+						if (i == pgUl.index) {
+							oLi.className = 'select';
+						}
+						oLi.onclick = function () {
+							pgUl.index = this.index;
+							pagesCon.style.left = ( -1000 * pgUl.index) + 'px';
+							removeSiblingsClass(this,'select');
+							addClass(this,'select');
+						}
+						pgUl.appendChild(oLi);
+					}
+				} else {
+					lastPage.appendChild(oFile)
+				}
+		})
+
+		on(cancleEditBtn,'click',function () {
+			console.log('cku')
+			var files = fileCon.querySelectorAll('.doc');
+			removeClass(files,'select');
+			removeClass(this.parentNode.parentNode,'editMode');
+		});
+
+		// on($$('body'),'mouseup',function(e) {
+		// 	var ev = e || window.event;
+		// 	console.log(ev.path);
+		// })
+
+		on(inputCon,'focus',function (){
+			console.log('focus')
+		})  //搜索框回车事件
+
+		on(trunPageBtns,'click',function () {
+			var allLi = pgUl.querySelectorAll('li'),
+				pageL = allLi.length;
+			if (this.index == 0) {   //上一页
+				if (pgUl.index !=0) {
+					pgUl.index--;
+					removeSiblingsClass(allLi[0],'select');
+					addClass(allLi[pgUl.index],'select');
+					pagesCon.style.left = (-1000*pgUl.index) + 'px';
+				};
+			} else if (this.index == 1) {  //下一页
+				if (pgUl.index!=(pageL-1)) {
+					pgUl.index++;
+					removeSiblingsClass(allLi[0],'select');
+					addClass(allLi[pgUl.index],'select');
+					pagesCon.style.left = (-1000*pgUl.index) + 'px';	 
+				}
+			}
+		})
+
+		on(reNameBtn,'click',function () {
+			var allTrue = fileCon.querySelectorAll('.doc.true');  //第一个
+			console.log(allTrue.length)
+			if (allTrue.length == 0 || allTrue.length == 'undefined') {
+				alert('请选择一个文件来更名');
+			}else {
+				removeClass(allTrue,'true');
+				reName(allTrue[0]);
+			}
+		})
+
+		//删除证据包
+		var cacheDelets;  //缓存即将删掉的文件
+		on(deleteBtn,'click',function () {
+			cacheDelets = fileCon.querySelectorAll('.doc.true');
+			if (cacheDelets.length == 0) {
+				cacheDelets = [];
+				alert('请至少选择一个文件包删除');
+			} else {
+				addClass($$('body'),'delete');
+			}
+		})
+ 		//确认删除
+		on(confirmDel,'click',function () {
+			removeFiles(cacheDelets);
+			removeClass($$('body'),'delete');
+			reRender()  //重新渲染;
+		})
+
+		on(cancelDel,'click',function () {
+			removeClass($$('body'),'delete');
+		})
+
+		on(closeDel,'click',function () {
+			removeClass($$('body'),'delete');
+		})
+
+		var data = {
+			'file' : [  //文件类型 文件  文件默认没有封面
+				{
+					'name' : '数据取证报',
+				},
+				{
+					'name' : '数据取证报2',
+				},
+				{
+					'name' : '45',
+				},
+				{
+					'name' : '56',
+				},
+				{
+					'name' : '34',
+				},
+				{
+					'name' : '23',
+				},
+				{
+					'name' : '23233',
+				},
+				{
+					'name' : 'qsqss',
+				},
+				{
+					'name' : '223'
+				}
+			],
+			'doc' : [   //文件类型 : 证据包  证据包必须要有封面缩略图
+				{
+					'name' : '证据包',
+					'imgURL' : './img/ad.png'
+				},
+				{
+					'name' : 'ceshi',
+					'imgURL' : './img/ad.png'
+				},
+				{
+					'name' : 'ceshi',
+					'imgURL' : './img/ad.png'
+				},
+				{
+					'name' : 'ceshi',
+					'imgURL' : './img/ad.png'
+				},
+				{
+					'name' : 'ceshi',
+					'imgURL' : './img/ad.png'
+				} 
+			]
+		}
+
+		function render (data) {  //传入 渲染JSON 
+			var files = data.file,
+				fileL = files.length,
+				docs = data.doc,  //文档
+				docL = docs.length,
+				l = fileL + docL,  //文档总长度 用来计算有几页
+				pageL = Math.ceil(l/8);  //页数
+				for (var i = 0; i < pageL - 1; i++) {
+					var page = document.createElement('div');
+					page.className = 'page clearfix';
+					pagesCon.appendChild(page);
+				}
+				pgUl.innerHTML = '';
+				for (var i = 0; i < pageL; i++) {
+					var oLi = document.createElement('li');
+					if (i == 0) {
+						oLi.className = 'select';
+					}
+
+					oLi.innerHTML = (i + 1);
+					oLi.index = i;
+					oLi.onclick = function () {
+						pgUl.index = this.index;
+						pagesCon.style.left = ( -1000 * pgUl.index) + 'px';
+						removeSiblingsClass(this,'select');
+						addClass(this,'select');
+					}
+					pgUl.appendChild(oLi);
+				}
+				var currenPage = fileCon.querySelector('.page');  //第一个page
+				pagesCon.style.width = (1000 * pageL) + 'px';
+			for (var i = 0; i < fileL; i++) {  //渲染file
+				var oDiv1 = document.createElement('div'),  //outerdiv
+					oDiv2 = document.createElement('div'),
+					oDiv3 = document.createElement('div'),
+					op = document.createElement('p');
+				oDiv1.className = 'doc file';
+				oDiv2.className = 'file';
+				oDiv3.className = 'v';
+				oDiv1.appendChild(oDiv2);
+				oDiv1.appendChild(oDiv3);
+				op.innerHTML = files[i].name;
+				op.className = 't';
+				oDiv1.appendChild(op);
+
+
+				var geshu = currenPage.querySelectorAll('.doc').length;
+				console.log(geshu);
+				if ( geshu == 8) {
+					currenPage = currenPage.nextElementSibling;
+					console.log(currenPage)
+				}
+				currenPage.appendChild(oDiv1);
+			}
+			for (var i = 0; i < docL; i++) {
+				var oDiv1 = document.createElement('div'),  //outerdiv
+					oDiv2 = document.createElement('div'),
+					oDiv3 = document.createElement('div'),
+					oImg = document.createElement('img'),
+					op = document.createElement('p');
+				oDiv1.className = 'doc';
+				oDiv2.className = 'file';
+				// oImg.src= docs[i].imgURL;
+				oDiv2.style.background = 'url('+ docs[i].imgURL +') no-repeat center';
+				oDiv3.className = 'v';
+				oDiv1.appendChild(oDiv2);
+				oDiv1.appendChild(oDiv3);
+				op.innerHTML = docs[i].name;
+				op.className = 't';
+				oDiv1.appendChild(op);
+				oDiv1.onmousedown = function (e) {
+					if (hasClass(this,'true')) {  //
+						var ev = e || window.event,
+							_left = ev.clientX,
+							_top = ev.clientY,
+							oImg,
+							flag = true;
+						body.onmousemove = function (e) {
+							var ev = e || window.event,
+								movX = ev.clientX - _left,
+								movY = ev.clientY - _top;
+								if (Math.abs(movX) > 16 || Math.abs(movY) > 16) {
+									if (flag) {
+										oImg = document.createElement('div');
+										oImg.className = 'oImg';
+										body.appendChild(oImg);
+										addClass(pagesCon,'move');
+										flag = false;
+										body.onmouseup = function (e) {
+											var ev = e || window.evnet,
+												x = ev.clientX,
+												y = ev.clientY;
+
+											if (oImg) {
+												body.removeChild(oImg);
+											}
+											var cuDoms = getPointDoms(x,y),
+												l = cuDoms.length;
+											for (var i = 0; i < l; i++) {
+												if (hasClass(cuDoms[i]),'file'&&hasClass(cuDoms[i],'doc')) {  //鼠标松开后成功移动到文件位置
+													moveTarget = cuDoms[i];
+												
+													
+													// break;
+												} 
+											}
+											cacheMoveFile = fileCon.querySelectorAll('.true');
+											l = cacheMoveFile.length;
+											if (!hasClass(moveTarget,'file')) {  //如果目标不是文件
+												alert('只能将证据包移动至文件')
+											} else {  //移动目标是文件
+												for (var j = 0; j < l; j++) {
+													if (hasClass(cacheMoveFile[j],'file')) { // 如果当前选择有文件  不允许移动
+														alert('不允许移动文件');
+														break;
+													}else {
+														Move();
+													}
+												}
+											}
+
+											body.onmousemove = null;
+											body.onmouseup = null;
+											if (oImg) {
+												body.removeChild(oImg);
+											}
+										}
+									}
+								}
+								if (oImg) {
+									oImg.style.left = (_left + movX - 25) + 'px';
+									oImg.style.top = (_top + movY -26) + 'px';
+								}
+						}
+						body.onmouseup = function (){
+							body.onmousemove = null;
+						}
+					}
+
+				} 
+				var geshu = currenPage.querySelectorAll('.doc').length;
+				console.log(geshu);
+				if ( geshu == 8) {
+					currenPage = currenPage.nextElementSibling;
+					console.log(currenPage)
+				}
+				currenPage.appendChild(oDiv1);
+			}
+			var docs = fileCon.querySelectorAll('.doc');
+			on(docs,'click',function () {
+				if (hasClass(this,'select')) {
+					if (hasClass(this,'true')) {
+						removeClass(this,'true');
+					} else {
+						addClass(this,'true');
+					}
+				}
+			})
+			on(docs,'mousedown',function (e) {
+				var ev = e || window.event;
+			})
+		}
+
+		render(data)
+
+		function reName (file) {  //重命名 传入文件(document) only one a time
+			var pt = file.querySelector('p.t');
+			if (pt) {
+				var oInput = document.createElement('input'),
+					text = pt.innerHTML;
+				oInput.className = 't';
+				oInput.value = text;
+				file.removeChild(pt);
+				file.appendChild(oInput);
+				oInput.focus();
+				currentFix = oInput;
+				on(oInput,'blur',function () {
+					var text = this.value;
+					var op = document.createElement('p');
+					op.innerHTML = text;
+					op.className = 't';
+					file.removeChild(this);
+					file.appendChild(op);
+				})
+			}
+		}
+
+
+		body.onkeydown = function (ev) {  //回车键 保存命名
+			var ev = ev || window.event,
+				keyCode = ev.keyCode;
+			if (keyCode == 13) {
+				if (currentFix) {
+					currentFix.blur();
+				}
+			}
+		}
+
+		function removeFiles (files) {
+			if ( !files instanceof Array) {
+				files.parentNode.removeChild(files);
+			} else {
+				var l = files.length;
+				if(l == 0 || l == 'undefined') {
+					alert('请移除至少一个文件')
+				} else {
+					if (l == 1) {
+						files[0].parentNode.removeChild(files[0]);
+					} else {
+						for (var i = 0; i < l; i++) {
+							files[i].parentNode.removeChild(files[i])
+						}
+					}
+				}
+			}
+		}	
+
+		function removeFiles2 (files) {
+			if ( !files instanceof Array) {
+				files.parentNode.removeChild(files);
+			} else {
+				var l = files.length;
+				if(l == 0 || l == 'undefined') {
+					alert('请移动至少一个文件')
+				} else {
+					if (l == 1) {
+						files[0].parentNode.removeChild(files[0]);
+					} else {
+						for (var i = 0; i < l; i++) {
+							files[i].parentNode.removeChild(files[i])
+						}
+					}
+				}
+			}
+		}
+
+		//移动事件
+		function Move () {
+			addClass(body,'move');
+		}
+		on(closeMove,'click',function(){
+			removeClass(body,'move');
+		})
+		on(cancelMove,'click',function(){
+			removeClass(body,'move');
+		})
+		on(confirmMove,'click',function(){
+			removeClass(body,'move');
+			removeFiles2(cacheMoveFile);
+			reRender();
+		})
+
+
+
+		function reRender () {
+			var allPage = fileCon.querySelectorAll('.page'),
+				l = allPage.length,
+				allDocs = fileCon.querySelectorAll('.doc'),
+				docsL = allDocs.length,
+				pageL = Math.ceil(allDocs.length / 8),
+				crtpnIndex = pgUl.index;  //当前的页面
+				 //删掉节点重新渲染后应该跳转的页面如果是该页面已经被删除就跳到末页 如果该页面没有被删除就不跳到末页
+				 if (pageL == 0) {
+				 	pageL = 1;
+				 }
+			pagesCon.innerHTML = '';
+			pagesCon.style.width = (1000 * pageL) + 'px';
+			pgUl.innerHTML = '';
+
+			for (var i = 0; i < pageL; i++) {
+				var oLi = document.createElement('li');
+				oLi.innerHTML = (i + 1);
+				oLi.index = i;
+				oLi.onclick = function () {
+					pgUl.index = this.index;
+					pagesCon.style.left = ( -1000 * pgUl.index) + 'px';
+					removeSiblingsClass(this,'select');
+					addClass(this,'select');
+				}
+				pgUl.appendChild(oLi);
+			}
+
+			for (var i = 0; i < pageL; i++) {
+				var page = document.createElement('div');
+				page.className = 'page clearfix';
+				pagesCon.appendChild(page);
+			}
+
+			var currenPage = fileCon.querySelector('.page');
+			var g = currenPage.querySelectorAll('.doc').length;
+			for (var i = 0; i < docsL; i++) {
+				if (g == 8) {
+					g = 0;
+					currenPage = currenPage.nextElementSibling;
+				}
+				currenPage.appendChild(allDocs[i]);
+				g++;
+			}
+
+			var allLi = pgUl.querySelectorAll('li');
+			if ((pgUl.index + 1) > pageL) {
+				pagesCon.style.left = ((pageL-1)*-1000) + 'px';
+				addClass(allLi[pageL - 1],'select');
+			} else {
+				addClass(allLi[pgUl.index],'select');
+			}
+		}
+		function getPointDoms (x,y) {
+			var arry = [],
+				firstNode = document.elementFromPoint(x, y);
+				currentNode = firstNode; 
+			while (currentNode != document ) {
+				arry.push(currentNode);
+				console.log(currentNode)
+				currentNode = currentNode.parentNode;
+			}
+			return arry;
+		}
+	})()
+</script>

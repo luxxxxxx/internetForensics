@@ -1,0 +1,136 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+body {
+  position: relative;
+  min-width: 1152px;
+  min-height: 720px;
+  background: url('../img/main_bg.png') no-repeat top center;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+}
+div.main {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 130.4px;
+  margin: 0 auto;
+  width: 536px;
+  height: 464px;
+  background: #fff;
+  border-radius: 6px;
+  box-sizing: border-box;
+  padding: 64px 96px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(30px);
+  opacity: 0;
+  transition: .25s all linear;
+}
+div.main.load {
+  transform: translate(0px);
+  opacity: 1;
+}
+div.main h1 {
+  font-size: 25.6px;
+  color: #333333;
+  text-align: center;
+  font-weight: lighter;
+}
+div.main .inputCon {
+  /*margin: 80px auto;*/
+  margin-top: 64px;
+}
+div.main .inputCon .text {
+  width: 340.8px;
+  height: 52px;
+  border: 2px solid #f0f0f0;
+  color: #ff9999;
+  border-radius: 6px;
+  box-sizing: border-box;
+  box-shadow: 0 1px 1px rgba(240, 240, 240, 0.1);
+  transition: all linear .2s;
+}
+div.main .inputCon .text.focus {
+  border-color: #a1cefc;
+}
+div.main .inputCon .text .icon {
+  display: block;
+  width: 48px;
+  height: 48px;
+  float: left;
+  box-sizing: border-box;
+}
+div.main .inputCon .text .icon.user {
+  background: url('../img/user.png') no-repeat center center;
+}
+div.main .inputCon .text .icon.psw {
+  background: url('../img/psw.png') no-repeat center center;
+}
+div.main .inputCon .text input.input_text {
+  height: 48px;
+  width: 288px;
+  border: none;
+  outline: none;
+  text-indent: 8px;
+  font-weight: lighter;
+  font-size: 25.6px;
+  color: #333333;
+}
+div.main .inputCon .text input.input_text::-webkit-input-placeholder {
+  color: #999999;
+}
+div.main .inputCon .text input.input_text::-moz-input-placeholder {
+  color: #999999;
+}
+div.main .inputCon .text input.input_text::-ms-input-placeholder {
+  color: #999999;
+}
+div.main .inputCon .text input.input_text::-o-input-placeholder {
+  color: #999999;
+}
+div.main .inputCon .text:nth-child(2) {
+  margin-top: 32px;
+}
+div.main .inputCon .submit {
+  width: 337.6px;
+  height: 48px;
+  margin-top: 65.6px;
+  background: #4a9afe;
+  text-align: center;
+  line-height: 48px;
+  color: #fff;
+  font-size: 20.8px;
+  letter-spacing: 2px;
+  text-indent: 2px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all linear .2s;
+  box-shadow: 0 2px 5px rgba(74, 154, 254, 0.4);
+}
+div.main .inputCon .submit:hover {
+  opacity: .85;
+}
+p {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+}
+p#hint {
+  top: 72px;
+  letter-spacing: 1px;
+}
+p#copyRight {
+  bottom: 44px;
+}
+@media (max-height: 825*0.8px) {
+  p#copyRight {
+    display: none;
+  }
+}

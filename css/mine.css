@@ -1,0 +1,413 @@
+body {
+  position: relative;
+  min-width: 1000px;
+}
+* {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+#inputCon {
+  width: 708px;
+  height: 86px;
+  margin: 30px auto 0;
+  box-sizing: border-box;
+  border: 2px solid #d6d6d6;
+  border-radius: 4px;
+}
+#inputCon i.icon {
+  display: block;
+  float: left;
+  width: 82px;
+  height: 84px;
+  background: url('../img/search.png') no-repeat center center;
+  cursor: pointer;
+}
+#inputCon input {
+  float: left;
+  border: none;
+  outline: none;
+  height: 83px;
+  width: 622px;
+  font-size: 20px;
+  font-weight: lighter;
+  color: #494949;
+  box-sizing: border-box;
+  padding-left: 20px;
+}
+#inputCon input::-webkit-input-placeholder {
+  color: #999;
+}
+#inputCon input::-moz-input-placeholder {
+  color: #999;
+}
+#inputCon input::-o-input-placeholder {
+  color: #999;
+}
+#inputCon input::input-placeholder {
+  color: #999;
+}
+#main {
+  width: 1000px;
+  margin: 46px auto 0;
+}
+#main .photo {
+  float: left;
+  width: 101px;
+  height: 101px;
+}
+#main .photo img {
+  width: 100%;
+  height: 100%;
+}
+#main .info {
+  position: relative;
+  float: right;
+  width: 865px;
+  height: 94px;
+  overflow: hidden;
+}
+#main .info.editMode span.edit {
+  right: -81px;
+  opacity: 0;
+}
+#main .info.editMode div.editsCon {
+  right: 0;
+}
+#main .info p.userName {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  color: #333333;
+  font-size: 28.65px;
+  font-weight: lighter;
+}
+#main .info p.address {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: #3f8ff3;
+  font-size: 18.62px;
+  font-weight: lighter;
+}
+#main .info span.edit {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 6px;
+  display: block;
+  width: 80px;
+  height: 40px;
+  border: 1px solid #3f8ff3;
+  color: #3f8ff3;
+  text-align: center;
+  line-height: 40px;
+  box-sizing: border-box;
+  font-size: 18.18px;
+  transition: 0.5s right cubic-bezier(0, 0, 0.23, 1.31);
+  cursor: pointer;
+  font-weight: lighter;
+}
+#main .info span.edit i.icon {
+  position: relative;
+  top: 3px;
+  display: inline-block;
+  width: 17px;
+  height: 18px;
+  background: url('../img/edit.png') no-repeat center center;
+  margin-right: 7px;
+}
+#main .info div.editsCon {
+  position: absolute;
+  bottom: 0;
+  right: -100%;
+  height: 40px;
+  transition: 0.5s all cubic-bezier(0, 0, 0.23, 1.31);
+  border: 1px solid #3f8ff3;
+  color: #3f8ff3;
+  text-align: center;
+  line-height: 40px;
+  box-sizing: border-box;
+  font-size: 18.18px;
+  font-weight: lighter;
+  border-radius: 6px;
+  overflow: hidden;
+}
+#main .info div.editsCon span {
+  display: inline-block;
+  float: left;
+  border-right: 1px solid #3f8ff3;
+  cursor: pointer;
+  line-height: 40px;
+  padding: 0 11px;
+  box-sizing: border-box;
+}
+#main .info div.editsCon span:nth-child(7) {
+  border-right: 0;
+}
+#main .info div.editsCon i.icon {
+  position: relative;
+  display: inline-block;
+  margin-right: 9px;
+  width: 17px;
+  line-height: 40px;
+}
+#main .info div.editsCon i.icon.new {
+  top: 2px;
+  background: url('../img/newFile.png') no-repeat center center;
+  height: 16px;
+}
+#main .info div.editsCon i.icon.down {
+  top: 3px;
+  background: url('../img/downLoad.png') no-repeat center center;
+  height: 18px;
+}
+#main .info div.editsCon i.icon.delete {
+  top: 2px;
+  background: url('../img/delete.png') no-repeat center center;
+  height: 17px;
+}
+#main .fileCon {
+  width: 1000px;
+  height: 415px;
+  margin: 25px auto 15px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+#main .fileCon .pageCon {
+  position: relative;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  transition: all .3s ease;
+}
+#main .fileCon .pageCon .page {
+  float: left;
+  width: 980px;
+  height: 100%;
+  margin-right: 20px;
+  transition: .2s all ease;
+}
+#main .fileCon .pageCon .page .doc {
+  float: left;
+  position: relative;
+  width: 201px;
+  height: 182px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-right: 58px;
+  margin-bottom: 48px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: .2s all linear;
+}
+#main .fileCon .pageCon .page .doc:nth-child(4n) {
+  margin-right: 0;
+}
+#main .fileCon .pageCon .page .doc.file .file {
+  width: 114px;
+  height: 104px;
+  margin: 32px auto 0;
+  background: url('../img/file.png') no-repeat center center;
+}
+#main .fileCon .pageCon .page .doc.file .file img {
+  display: none;
+}
+#main .fileCon .pageCon .page .doc.select {
+  background: #f1f1f1;
+  border: 1px solid #f1f1f1;
+}
+#main .fileCon .pageCon .page .doc.select .v {
+  visibility: visible;
+  opacity: 1;
+  background: url('../img/v.png') no-repeat center center;
+}
+#main .fileCon .pageCon .page .doc.select.true {
+  background: #eef8ff;
+  border: 1px solid #bacfff;
+}
+#main .fileCon .pageCon .page .doc.select.true .v {
+  background: url('../img/v1.png') no-repeat center center;
+}
+#main .fileCon .pageCon .page .doc .file {
+  width: 114px;
+  height: 104px;
+  margin: 32px auto 0;
+  background-size: cover;
+}
+#main .fileCon .pageCon .page .doc .file img {
+  display: block;
+  width: 140px;
+  height: 102px;
+  margin: 34px auto 0;
+  background: url('../img/ad.png') no-repeat center center;
+}
+#main .fileCon .pageCon .page .doc .v {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  right: 7px;
+  top: 7px;
+  transition: .2s all linear;
+}
+#main .fileCon .pageCon .page .doc input.t {
+  outline: none;
+  border: 1px solid #3f8ff3;
+  border-radius: 3px;
+}
+#main .fileCon .pageCon .page .doc .t {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  text-align: center;
+  color: #333333;
+  font-size: 18.17px;
+  max-width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: default;
+}
+#main .pnCon {
+  max-width: 1000px;
+  height: 39px;
+  text-align: center;
+  margin-top: 70px;
+}
+#main .pnCon span {
+  display: inline-block;
+  width: 94px;
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d6d6d6;
+  text-align: center;
+  line-height: 39px;
+  color: #747474;
+  font-weight: lighter;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all .15s linear;
+}
+#main .pnCon span:hover {
+  background: rgba(214, 214, 214, 0.7);
+  color: #fff;
+}
+#main .pnCon ul {
+  display: inline-block;
+  margin: 0 28px;
+}
+#main .pnCon ul li {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  margin-right: 26px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 18px;
+  font-weight: lighter;
+  line-height: 39px;
+  border: 2px solid #d6d6d6;
+  border-radius: 4px;
+  color: #333333;
+}
+#main .pnCon ul li:last-child {
+  margin-right: 0;
+}
+#main .pnCon ul li.select {
+  background: #4a9afe;
+  border: none;
+  margin-top: 2px;
+  color: #fff;
+  border-radius: 4px;
+}
+.alert {
+  visibility: hidden;
+  opacity: 0;
+  transition: .2s all linear;
+  z-index: 100;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 220px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  padding: 50px;
+}
+.alert .close {
+  position: absolute;
+  right: 13px;
+  top: 13px;
+  width: 20px;
+  height: 20px;
+  background: url('../img/close.png') no-repeat center center;
+  cursor: pointer;
+}
+.alert p.hint {
+  font-size: 24px;
+  font-weight: lighter;
+  text-align: center;
+  color: #333333;
+}
+.alert div.selectCon {
+  margin-top: 75px;
+}
+.alert div.selectCon > div {
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  border-radius: 6px;
+  line-height: 30px;
+  font-weight: lighter;
+  font-size: 22px;
+  border: 1px solid #333;
+  color: #999;
+  cursor: pointer;
+}
+.alert div.selectCon > div.confirm {
+  background: #00a1d6;
+  color: #fff;
+  border: 1px solid #00a1d6;
+  float: left;
+}
+.alert div.selectCon > div.cancle {
+  float: right;
+}
+body.delete #alert {
+  visibility: visible;
+  opacity: 1;
+}
+body.move #alert2 {
+  visibility: visible;
+  opacity: 1;
+}
+#footer {
+  margin-top: 20px;
+}
+#x {
+  visibility: visible;
+  opacity: 1;
+  transition: .2s all ease;
+}
+#x.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+.oImg {
+  /*能够随着鼠标移动的文件图片*/
+  position: fixed;
+  width: 57px;
+  height: 52px;
+  opacity: .75;
+  background: url('../img/file.png') no-repeat center;
+  background-size: cover;
+}

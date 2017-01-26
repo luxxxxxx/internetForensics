@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>取证</title>
+	<link rel="stylesheet" type="text/css" href="./css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="./css/main.css" />
+</head>
+<body>
+	<div id="infoCon" class="">  <!-- show web :网页取证 show video ： 视频取证  loading : 加载中-->
+		<div class="close"></div>
+		<div class="main">
+			<p class="t">视频取证</p>
+			<div class="btnCon clearfix single">  <!-- single ： 单个取证 mul : 批量取证 -->
+				<div class="l select">单个数据取证</div>
+				<div class="r">批量数据取证</div>
+			</div>
+			<div class="inputCon1">
+				<form>
+					<input class="inputText" type="text" name="sigURL" placeholder="请输入您要取证的URL">
+					<input class="submit" type="submit" value="取证">
+				</form>
+			</div>
+			<div class="inputCon2">
+				<form>
+					<input id="path" class="inputText" type="text" placeholder="" disabled="true">
+					<span  id="uploadBtn" class="mulUpload" onclick="upload.click()">点击上传</span>
+					<input class="submit" type="submit" value="取证">
+					<input id="upload" type="file" name="mulURL" onchange="path.value = this.value" style="display: none;" accept=".txt" >
+				</form>
+			</div>
+		</div>
+		<div class="main2">
+			<p class="t">网页取证</p>
+			<div class="btnCon clearfix single">  <!-- single ： 单个取证 mul : 批量取证 -->
+				<div class="l select">单个数据取证</div>
+				<div class="r">批量数据取证</div>
+			</div>
+			<div class="inputCon1">
+				<form>
+					<input class="inputText" type="text" name="sigURL2" placeholder="请输入您要取证的URL">
+					<input class="submit" type="submit" value="取证">
+				</form>
+			</div>
+			<div class="inputCon2">
+				<form>
+					<input id="path2" class="inputText" type="text" placeholder="" disabled="true">
+					<span  id="uploadBtn2" class="mulUpload" onclick="upload2.click()">点击上传</span>
+					<input class="submit" type="submit" value="取证">
+					<input id="upload2" type="file" name="mulURL2" onchange="path2.value = this.value" style="display: none;" accept=".txt" >
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="mask">
+		<div class="main">
+			<div class="close"></div>
+			<p class="hint">温馨提示：系统正在后台取证，您可以进行其他操作，取证完毕我们会自动提示您</p>
+			<div class="inner">
+				<div class="pic"></div>
+				<p>正在取证...</p>
+			</div>
+		</div>
+	</div>
+	<div id="header-wrp">
+		<div id="header">
+			<ul class="l clearfix">
+				<li class="navList select"><a href="./main.html">首页</a></li>
+				<li class="navList"><a href="./mine.html">我的</a></li>
+				<li class="bar"></li>
+			</ul>
+			<div class="r clearfix">
+				<div class="loginCon login">  <!-- login: 登录状态 -->
+					<span>注销</span>
+					<span class="n-margin-r">操作历史</span>
+				</div>
+				<div class="photo">
+					<img src="./img/photo1.png" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="main">
+		<div class="section clearfix">
+			<div class="qz l">
+				<div class="photo webPage select"></div>
+				<p class="t">网页取证</p>
+			</div>
+			<div class="qz r">
+				<div class="photo video"></div>
+				<p class="t">视频取证</p>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<p>版本: v1.0.0.0v CopyRight(C) 版权所有 重庆邮电大学</p>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src='./js/pack-0.5.js'></script>
+<script type="text/javascript">
+	(function header () {
+		var bar = $$('.bar'),
+			navCon = $$('#header ul.l'),
+			currentNav = $$('#header ul.l .select'),
+			qz = $$('.qz'),  //主页两种取证
+		    navs = $$('#header ul.l li.navList'),  //导航所有
+			infoCon = $$('#infoCon'),  //弹框
+			close = $$('#infoCon .close'),  //右上角×
+			loadingClose = $$('#mask > div > div.close'),  //加载动画关闭
+			qzWay = $$('#infoCon .btnCon div');  //单个取证  批量取证x
+		   	
+		on(navs,'mouseover',function(){
+			removeSiblingsClass(this,'select');
+			addClass(this,'select');
+			bar.style.left = this.offsetLeft + 'px';
+		})
+
+		on(navCon,'mouseleave',function () {
+			removeSiblingsClass(currentNav,'select');
+			addClass(currentNav,'select');
+			var l = currentNav.offsetLeft;
+			bar.style.left = l + 'px';
+		})
+		on(close,'click',function () {
+			infoCon.className = '';
+		})
+		on(qz,'click',function(){  //主页面里面的两种取证
+			if (!this.index) {
+				infoCon.className = 'show web';
+			} else {
+				infoCon.className = 'show video';
+			}
+		})
+		on(qzWay,'click',function(){  //单个取证 批量取证
+			removeSiblingsClass(this,'select');
+			addClass(this,'select');
+			console.log(this.index === 1 || this.index === 3)
+			if (this.index === 1 || this.index === 3) { //1
+				this.parentNode.className = 'btnCon clearfix mul';
+			} else {
+				this.parentNode.className = 'btnCon clearfix single';
+			}
+		})
+		on(loadingClose,'click',function(){
+			removeClass(infoCon,'loading');
+		});
+	})()
+</script>

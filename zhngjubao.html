@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>取证</title>
+	<link rel="stylesheet" type="text/css" href="./css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="./css/common.css" />
+	<link rel="stylesheet" type="text/css" href="./css/zjb.css" />
+</head>
+<body>
+	<div id="mask" class="">  <!-- show : block; data : 数据 ,rout : 路由-->
+		<div class="box">
+			<div class="close"></div>
+			<div class="dataCon">
+				<div class="data">
+					<pre>
+texttexttexttext
+texttext
+texttexttexttext
+texttext
+					</pre>
+				</div>
+				<div class="btn">下载</div>
+			</div>
+			<div class="videoCon">
+				<p class="t">让工作变得妙趣横生</p>
+				<video src="./movie.ogg" controls="controls">
+					your browser does not support the video tag
+				</video>
+			</div>
+			<div class="routingCon">
+				<img src="./img/routImg.png">
+				<div class="save"></div>
+			</div>
+		</div>
+	</div>	
+	<div id="header-wrp">
+		<div id="header">
+			<ul class="l clearfix">
+				<li class="navList select"><a href="./main.html">首页</a></li>
+				<li class="navList"><a href="./mine.html">我的</a></li>
+				<li class="bar"></li>
+			</ul>
+			<div class="r clearfix">
+				<div class="loginCon">  <!-- login: 登录状态 -->
+					<span>注销</span>
+					<span class="n-margin-r">操作历史</span>
+				</div>
+				<div class="photo">
+					<img src="./img/photo1.png" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="main-wrp">
+		<div id="main">
+			<div class="header clearfix">
+				<div class="l">
+					<div class="pho">
+						<img src="./img/ad.png">
+					</div>
+					<p class="desc">网页快照</p>
+				</div>
+				<div class="r">
+					<div class="t">
+						<h1>百度</h1>
+						<p class="info">涉嫌侵权</p>
+					</div>
+					<div class="dlBtn">
+						<i></i>
+						<span>下载</span>
+					</div>
+					<div class="urlCon">www.baidu.com/asas/#sdafsdfsd</div>
+				</div>
+			</div>
+			<div class="main clearfix video"> <!-- video : 有视频 -->
+				<div class="func">
+					<div class="cover">
+						<i class="icon1"></i>
+					</div>
+					<p class="t">底层协议信息</p>
+				</div>
+				<div class="func">
+					<div class="cover">
+						<i class="icon4"></i>
+					</div>
+					<p class="t">视频</p>
+				</div>
+				<div class="func">
+					<div class="cover">
+						<i class="icon2"></i>
+					</div>
+					<p class="t">路由图</p>
+				</div>
+				<div class="func">
+					<div class="cover">
+						<i class="icon3"></i>
+					</div>
+					<p class="t">取证报告</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer"><p>版本: v1.0.0.0v CopyRight(C) 版权所有 重庆邮电大学</p></div>
+</body>
+</html>
+<script type="text/javascript" src='./js/pack-0.5.js'></script>
+<script type="text/javascript">
+	(function header () {
+		var bar = $$('.bar'),
+			navCon = $$('#header ul.l'),
+			currentNav = $$('#header ul.l .select'),
+
+			mask = $$('#mask'),  
+			closeMask = $$('#mask .box .close'),
+
+			funcs = $$('#main .main .func'),  //协议 视频 路由图 取证报告
+		    navs = $$('#header ul.l li.navList');  //导航所有
+		bar.style.left = currentNav.offsetLeft + 'px';
+
+		on(navs,'mouseover',function(){
+			removeSiblingsClass(this,'select');
+			addClass(this,'select');
+			bar.style.left = this.offsetLeft + 'px';
+		})
+
+		on(navCon,'mouseleave',function () {
+			removeSiblingsClass(currentNav,'select');
+			addClass(currentNav,'select');
+			var l = currentNav.offsetLeft;
+			bar.style.left = l + 'px';
+		})
+
+		on(funcs,'click',function (){
+			addClass(mask,'show');
+			if (this.index == 0) {   //底层协议
+				mask.className = 'show data';
+			} else if (this.index == 1) {  //视频
+				mask.className = 'show video';
+			} else if (this.index == 2) {
+				mask.className = 'show rout';
+			} else if (this.index == 3) {	
+				mask.className = 'show rout';
+			}
+		})
+
+		on(closeMask,'click',function () {
+			removeClass(mask,'show');
+		})
+
+
+
+
+	})()
+</script>

@@ -1,0 +1,441 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+body {
+  min-width: 1000px;
+}
+#header-wrp {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+#header {
+  width: 1000px;
+  height: 80px;
+  margin: 0 auto;
+}
+#header .l {
+  float: left;
+}
+#header .l {
+  position: relative;
+  display: block;
+  float: left;
+  height: 80px;
+  text-align: center;
+  line-height: 80px;
+}
+#header .l li {
+  display: block;
+  float: left;
+  width: 80px;
+  height: 80px;
+  margin-right: 33px;
+  text-align: center;
+  line-height: 80px;
+  font-weight: lighter;
+  color: #999999;
+  font-size: 24px;
+  transition: all .2s linear;
+  cursor: pointer;
+}
+#header .l li:hover a {
+  color: #74c1f7;
+}
+#header .l li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #999999;
+  transition: all .2s linear;
+}
+#header .l li.select a {
+  color: #74c1f7;
+}
+#header .l li.bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 6px;
+  width: 80px;
+  border-radius: 3px;
+  background: #74c1f7;
+  transition: 0.5s left cubic-bezier(0, 0, 0.23, 1.31);
+  padding: 0;
+}
+#header .r {
+  float: right;
+}
+#header .r .loginCon {
+  float: right;
+  height: 40px;
+  margin-top: 20px;
+  margin-left: 15px;
+  line-height: 40px;
+  display: none;
+}
+#header .r .loginCon.login {
+  display: block;
+}
+#header .r .loginCon span {
+  color: #74c1f7;
+  margin-right: 10px;
+  cursor: pointer;
+}
+#header .r .photo {
+  float: right;
+  width: 40px;
+  height: 40px;
+  margin-top: 20px;
+}
+#footer {
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  color: #999999;
+  font-weight: lighter;
+}
+#main {
+  width: 708px;
+  margin: 0 auto;
+  padding-top: 90px;
+}
+#main #inputCon {
+  width: 708px;
+  height: 86px;
+  box-sizing: border-box;
+  border: 2px solid #d6d6d6;
+  border-radius: 4px;
+}
+#main #inputCon i.icon {
+  display: block;
+  float: left;
+  width: 82px;
+  height: 82px;
+  background: url('../img/search.png') no-repeat center center;
+}
+#main #inputCon input {
+  float: left;
+  border: none;
+  outline: none;
+  height: 82px;
+  width: 622px;
+  font-size: 20px;
+  font-weight: lighter;
+  color: #494949;
+}
+#main #inputCon input::-webkit-input-placeholder {
+  color: #999;
+}
+#main #inputCon input::-moz-input-placeholder {
+  color: #999;
+}
+#main #inputCon input::-o-input-placeholder {
+  color: #999;
+}
+#main #inputCon input::input-placeholder {
+  color: #999;
+}
+#main .section {
+  width: 708px;
+  margin: 0 auto;
+  margin-top: 85px;
+}
+#main .section .qz {
+  width: 246px;
+  height: 368px;
+  cursor: pointer;
+}
+#main .section .qz:hover .photo {
+  box-shadow: 0 0 35px rgba(116, 193, 247, 0.7);
+}
+#main .section .qz:hover .t {
+  color: #3f8ff3;
+  /*select*/
+}
+#main .section .qz .photo {
+  width: 246px;
+  height: 302px;
+  cursor: pointer;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: all .2s linear;
+}
+#main .section .qz .photo.video {
+  background: url('../img/video.png') no-repeat center center;
+}
+#main .section .qz .photo.webPage {
+  background: url('../img/webPage.png') no-repeat center center;
+}
+#main .section .qz .t {
+  margin-top: 38px;
+  line-height: 24px;
+  font-weight: lighter;
+  text-align: center;
+  font-size: 24px;
+  color: #5c5c5c;
+  transition: .2s all linear;
+}
+#main .section .l {
+  float: left;
+}
+#main .section .r {
+  float: right;
+}
+#mask {
+  display: none;
+  z-index: 50;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+#mask .main {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 490px;
+  height: 390px;
+  background: #fff;
+  border-radius: 6px;
+}
+#mask .main p.hint {
+  position: absolute;
+  top: -82px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 12px;
+  font-weight: lighter;
+  color: #fff;
+}
+#mask .main .close {
+  position: absolute;
+  right: 45px;
+  top: 30px;
+  width: 20px;
+  height: 20px;
+  background: url('../img/close.png') no-repeat center center;
+  cursor: pointer;
+  transition: transform .2s ease;
+}
+#mask .main .close:hover {
+  transform: rotate(90deg);
+}
+#mask .main .inner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 165px;
+  height: 195px;
+}
+#mask .main .inner .pic {
+  width: 105px;
+  height: 105px;
+  margin: 0 auto;
+  background: url('../img/loading.png') no-repeat center center;
+}
+#mask .main .inner p {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  font-size: 32px;
+  color: #333333;
+  text-align: center;
+  max-width: 100%;
+  text-overflow: ellipsis;
+}
+#infoCon {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background: #fff;
+  width: 1000px;
+  height: 630px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+}
+#infoCon.loading + #mask {
+  display: block;
+}
+#infoCon.show {
+  display: block;
+}
+#infoCon.show.video {
+  /*视频取证*/
+}
+#infoCon.show.video .main {
+  display: block;
+}
+#infoCon.show.web {
+  /*网页取证*/
+}
+#infoCon.show.web .main2 {
+  display: block;
+}
+#infoCon .close {
+  position: absolute;
+  right: 48px;
+  top: 32px;
+  width: 20px;
+  height: 20px;
+  transition: all .2s ease;
+  background: url('../img/close.png') no-repeat center center;
+}
+#infoCon .close:hover {
+  transform: rotate(90deg);
+  cursor: pointer;
+}
+#infoCon .main,
+#infoCon .main2 {
+  display: none;
+  position: relative;
+  width: 425px;
+  height: 408px;
+  margin: 98px auto 0;
+}
+#infoCon .main p.t,
+#infoCon .main2 p.t {
+  text-align: center;
+  color: #333333;
+  line-height: 56px;
+  font-size: 32px;
+  font-weight: lighter;
+}
+#infoCon .main .btnCon,
+#infoCon .main2 .btnCon {
+  margin-top: 39px;
+}
+#infoCon .main .btnCon div,
+#infoCon .main2 .btnCon div {
+  width: 190px;
+  height: 42px;
+  border: 1px solid #999999;
+  color: #999999;
+  text-align: center;
+  line-height: 42px;
+  font-size: 20px;
+  font-weight: lighter;
+  cursor: pointer;
+  transition: .2s all linear;
+  border-radius: 5px;
+}
+#infoCon .main .btnCon div:hover,
+#infoCon .main2 .btnCon div:hover {
+  border: 1px solid #4a9afe;
+  /*select*/
+  color: #4a9afe;
+}
+#infoCon .main .btnCon div.select,
+#infoCon .main2 .btnCon div.select {
+  border: 1px solid #4a9afe;
+  /*select*/
+  color: #4a9afe;
+}
+#infoCon .main .btnCon div.l,
+#infoCon .main2 .btnCon div.l {
+  float: left;
+}
+#infoCon .main .btnCon div.r,
+#infoCon .main2 .btnCon div.r {
+  float: right;
+}
+#infoCon .main .btnCon.single + .inputCon1,
+#infoCon .main2 .btnCon.single + .inputCon1 {
+  display: block;
+}
+#infoCon .main .btnCon.mul + .inputCon1 + .inputCon2,
+#infoCon .main2 .btnCon.mul + .inputCon1 + .inputCon2 {
+  display: block;
+}
+#infoCon .main .inputCon1,
+#infoCon .main2 .inputCon1 {
+  display: none;
+}
+#infoCon .main .inputCon2,
+#infoCon .main2 .inputCon2 {
+  display: none;
+}
+#infoCon .main input.inputText,
+#infoCon .main2 input.inputText {
+  width: 100%;
+  height: 64px;
+  border: 2px solid #f0f0f0;
+  color: #494949;
+  text-indent: 18px;
+  box-sizing: border-box;
+  font-size: 22px;
+  font-weight: lighter;
+  margin-top: 54px;
+  border-radius: 8px;
+  transition: .2s border linear;
+  outline: none;
+}
+#infoCon .main input.inputText::-webkit-input-placeholder,
+#infoCon .main2 input.inputText::-webkit-input-placeholder {
+  color: #999999;
+  font-size: 22px;
+  font-weight: lighter;
+}
+#infoCon .main input.inputText::-moz-input-placeholder,
+#infoCon .main2 input.inputText::-moz-input-placeholder {
+  color: #999999;
+  font-size: 22px;
+  font-weight: lighter;
+}
+#infoCon .main input.inputText::-o-input-placeholder,
+#infoCon .main2 input.inputText::-o-input-placeholder {
+  color: #999999;
+  font-size: 22px;
+  font-weight: lighter;
+}
+#infoCon .main input.inputText::input-placeholder,
+#infoCon .main2 input.inputText::input-placeholder {
+  color: #999999;
+  font-size: 22px;
+  font-weight: lighter;
+}
+#infoCon .main input.inputText:focus,
+#infoCon .main2 input.inputText:focus {
+  border: 2px solid #4a9afe;
+}
+#infoCon .main span.mulUpload,
+#infoCon .main2 span.mulUpload {
+  float: right;
+  font-size: 16px;
+  font-weight: lighter;
+  color: #3f8ff3;
+  margin-top: 20px;
+  cursor: pointer;
+}
+#infoCon .main input.submit,
+#infoCon .main2 input.submit {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 64px;
+  width: 100%;
+  border-radius: 8px;
+  background: #4a9afe;
+  color: #fff;
+  transition: all .2s linear;
+  border: none;
+  outline: none;
+  font-size: 26px;
+  font-weight: lighter;
+}
+#infoCon .main input.submit:hover,
+#infoCon .main2 input.submit:hover {
+  background: rgba(74, 154, 254, 0.7);
+}

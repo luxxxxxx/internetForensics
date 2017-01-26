@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>取证</title>
+	<link rel="stylesheet" type="text/css" href="./css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="./css/main.css" />
+</head>
+<body>
+	<div id="header-wrp">
+		<div id="header">
+			<ul class="l clearfix">
+				<li class="navList select"><a href="./main.html">首页</a></li>
+				<li class="navList"><a href="./mine.html">我的</a></li>
+				<li class="navList n-margin-r"><a href="./response.html">反馈</a></li>
+				<li class="bar"></li>
+			</ul>
+			<div class="r clearfix">
+				<div class="loginCon">  <!-- login: 登录状态 -->
+					<span>注销</span>
+					<span class="n-margin-r">操作历史</span>
+				</div>
+				<div class="photo">
+					<img src="./img/photo1.png" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer"><p>版本: v1.0.0.0v CopyRight(C) 版权所有 重庆邮电大学</p></div>
+</body>
+</html>
+<script type="text/javascript" src='./js/pack-0.5.js'></script>
+<script type="text/javascript">
+	(function header () {
+		var bar = $$('.bar'),
+			navCon = $$('#header ul.l'),
+			currentNav = $$('#header ul.l .select'),
+		    navs = $$('#header ul.l li.navList');  //导航所有
+		bar.style.left = currentNav.offsetLeft + 'px';
+
+		on(navs,'mouseover',function(){
+			removeSiblingsClass(this,'select');
+			addClass(this,'select');
+			bar.style.left = this.offsetLeft + 'px';
+		})
+
+		on(navCon,'mouseleave',function () {
+			removeSiblingsClass(currentNav,'select');
+			addClass(currentNav,'select');
+			var l = currentNav.offsetLeft;
+			bar.style.left = l + 'px';
+		})
+
+
+	})()
+</script>

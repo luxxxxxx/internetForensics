@@ -1,0 +1,94 @@
+html,body {
+  width: 100%;
+  height: 100%;
+}
+#header-wrp {
+  box-shadow: 0 0 3px rgba(0,0,0,.3);
+}
+#header {
+  width: 1000px;
+  height: 80px;
+  margin: 0 auto;
+}
+#header .l {
+  float: left;
+}
+#header .l {
+  position: relative;
+  display: block;
+  float: left;
+  height: 80px;
+  text-align: center;
+  line-height: 80px; 
+}
+#header .l li {
+  display: block;
+  float: left;
+  width: 80px;
+  height: 80px;
+  margin-right: 33px;
+  text-align: center;
+  line-height: 80px;
+  font-weight: lighter;
+  color: rgba(153,153,153,1);
+  font-size: 24px;
+  transition: all .2s linear;
+  cursor: pointer;
+}
+#header .l li:hover a {
+  color: rgba(116,193,247,1);
+}
+#header .l li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: rgba(153,153,153,1);
+  transition: all linear .2s;
+}
+#header .l li.select a {
+  color: rgba(116,193,247,1);
+}
+
+#header .l li.bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 6px;
+  width: 80px;
+  border-radius: 3px;
+  background: rgba(116,193,247,1);
+  transition: 0.5s left cubic-bezier(0, 0, 0.23, 1.31);
+  padding: 0;
+}
+#header .r {
+  float: right;
+}
+#header .r .loginCon {
+  float: right;
+  height: 40px;
+  margin-top: 20px;
+  margin-left: 15px;
+  line-height: 40px;
+  display: none;
+}
+#header .r .loginCon.login {
+  display: block;
+}
+#header .r .loginCon span {
+  color: rgba(116,193,247,1);
+  margin-right: 10px;
+  cursor: pointer;
+}
+#header .r .photo {
+  float: right;
+  width: 40px;
+  height: 40px;
+  margin-top: 20px;
+}
+#footer {
+  height: 80px; 
+  line-height: 80px;
+  text-align: center;
+  color: rgba(153,153,153,1);
+  font-weight: lighter;
+}
